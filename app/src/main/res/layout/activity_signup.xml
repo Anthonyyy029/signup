@@ -19,9 +19,9 @@
     <!-- Name Field -->
     <EditText
         android:id="@+id/nameEditText"
-        android:layout_width="215dp"
+        android:layout_width="190dp"
         android:layout_height="50dp"
-        android:hint="Username"
+        android:hint="Full Name"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:background="@android:color/transparent"
@@ -31,9 +31,9 @@
     <!-- Email Field -->
     <EditText
         android:id="@+id/emailEditText"
-        android:layout_width="215dp"
+        android:layout_width="190dp"
         android:layout_height="50dp"
-        android:hint="Email"
+        android:hint="Username"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         android:background="@android:color/transparent"
@@ -43,7 +43,7 @@
     <!-- Password Field -->
     <EditText
         android:id="@+id/passwordEditText"
-        android:layout_width="215dp"
+        android:layout_width="190dp"
         android:layout_height="50dp"
         android:hint="Password"
         android:textColor="@android:color/white"
@@ -56,7 +56,7 @@
     <!-- Confirm Password Field -->
     <EditText
         android:id="@+id/confirmPasswordEditText"
-        android:layout_width="215dp"
+        android:layout_width="190dp"
         android:layout_height="50dp"
         android:hint="Confirm Password"
         android:textColor="@android:color/white"
@@ -68,6 +68,7 @@
 
     <!-- Sign Up Button -->
     <Button
+        android:name=".Signup"
         android:id="@+id/signupButton"
         android:layout_width="160dp"
         android:layout_height="50dp"

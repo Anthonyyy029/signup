@@ -8,14 +8,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class signup extends AppCompatActivity {
+public class Signup extends AppCompatActivity {
 
     private EditText nameEditText, emailEditText, passwordEditText, confirmPasswordEditText;
+    private DatabaseHelper databaseHelper; // Database Helper instance
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup); // Make sure this matches your XML file
+        setContentView(R.layout.activity_signup);
+
+        databaseHelper = new DatabaseHelper(this); // Initialize Database
 
         // Initialize UI elements
         nameEditText = findViewById(R.id.nameEditText);
@@ -33,24 +36,25 @@ public class signup extends AppCompatActivity {
                 String password = passwordEditText.getText().toString().trim();
                 String confirmPassword = confirmPasswordEditText.getText().toString().trim();
 
-                // Validate input fields
                 if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                    Toast.makeText(signup.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Signup.this, "All fields are required", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (!password.equals(confirmPassword)) {
-                    Toast.makeText(signup.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Signup.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // Simulate successful sign-up
-                Toast.makeText(signup.this, "Sign-up Successful!", Toast.LENGTH_SHORT).show();
-
-                // Navigate to Login Activity (if needed)
-                Intent intent = new Intent(signup.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                boolean isInserted = databaseHelper.insertUser(name, email, password);
+                if (isInserted) {
+                    Toast.makeText(Signup.this, "Sign-up Successful!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Signup.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(Signup.this, "Sign-up Failed. Try Again!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
